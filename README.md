@@ -28,7 +28,7 @@ The platform forecasts daily revenue using **ARIMA & SARIMA models**, provides a
 <img width="737" height="371" alt="image" src="https://github.com/user-attachments/assets/94caa49b-857e-4306-ba45-dc2ea0261f4b" />
 
 ```bash
-# One-liner to deploy the full platform on Minikube
+# set up
 kubectl create namespace revenue-forecast && \
 kubectl create configmap retail-config --from-env-file=.env -n revenue-forecast && \
 kubectl create secret generic retail-secret --from-env-file=.env -n revenue-forecast && \
@@ -40,3 +40,6 @@ kubectl apply -f k8s/fastapi-deployment.yaml -n revenue-forecast && \
 kubectl apply -f k8s/streamlit-deployment.yaml -n revenue-forecast && \
 kubectl apply -f k8s/etl-job.yaml -n revenue-forecast && \
 kubectl get pods -n revenue-forecast
+# Clean up
+kubectl delete namespace revenue-forecast
+minikube stop
