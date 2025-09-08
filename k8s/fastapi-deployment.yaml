@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+  namespace: revenue-forecast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: du_bao_doanh_thu-fastapi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: retail-config
+            - secretRef:
+                name: retail-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi
+  namespace: revenue-forecast
+spec:
+  type: NodePort
+  selector:
+    app: fastapi
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080

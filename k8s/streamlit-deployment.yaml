@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit
+  namespace: revenue-forecast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit
+  template:
+    metadata:
+      labels:
+        app: streamlit
+    spec:
+      containers:
+        - name: streamlit
+          image: streamlit-app:v2   # ⚡ đổi sang tag mới bạn vừa build
+          imagePullPolicy: IfNotPresent
+          command:
+            - "streamlit"
+            - "run"
+            - "services/forecast_dashboard.py"   # ⚡ fix path đúng
+            - "--server.port=8501"
+            - "--server.address=0.0.0.0"
+          ports:
+            - containerPort: 8501
+          envFrom:
+            - configMapRef:
+                name: retail-config
+            - secretRef:
+                name: retail-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamlit
+  namespace: revenue-forecast
+spec:
+  type: NodePort
+  selector:
+    app: streamlit
+  ports:
+    - port: 8501
+      targetPort: 8501
+      nodePort: 30081

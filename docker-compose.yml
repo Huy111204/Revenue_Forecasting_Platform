@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data:/data   # mount folder data chứa CSV
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    container_name: retail_fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file: .env
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: retail_streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres
+    env_file: .env
+
+  etl:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi  # dùng lại image fastapi
+    command: python services/load_data.py
+    container_name: retail_etl
+    depends_on:
+      - postgres
+    env_file: .env
+    volumes:
+      - ./data:/data   # để load CSV từ local vào container
+
+volumes:
+  pgdata:

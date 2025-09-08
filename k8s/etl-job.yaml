@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-job
+  namespace: revenue-forecast
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+        - name: etl
+          image: du_bao_doanh_thu-fastapi:latest
+          imagePullPolicy: IfNotPresent
+          command: ["python", "services/load_data.py"]
+          envFrom:
+            - configMapRef:
+                name: retail-config
+            - secretRef:
+                name: retail-secret
+          volumeMounts:
+            - name: host-data
+              mountPath: /data
+      restartPolicy: Never
+      volumes:
+        - name: host-data
+          hostPath:
+            path: /data
+            type: DirectoryOrCreate

@@ -1,0 +1,26 @@
+# Core
+pandas
+numpy
+python-dotenv
+
+# Database
+SQLAlchemy
+psycopg2-binary
+
+# FastAPI API
+fastapi
+uvicorn[standard]
+
+# Streamlit Dashboard
+streamlit
+
+# ML/Forecasting
+scikit-learn
+statsmodels
+pmdarima
+joblib
+
+# Visualization
+matplotlib
+seaborn
+plotly
