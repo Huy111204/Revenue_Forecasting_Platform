@@ -9,7 +9,7 @@ The platform forecasts daily revenue using ARIMA & SARIMA models, provides a RES
 
 - Forecast daily revenue using ARIMA & SARIMA models.
 - Interactive Streamlit dashboard for exploring forecasts.
-- FastAPI REST API with OpenAPI/Swagger documentation.
+- FastAPI REST API with Swagger documentation.
 - ETL job to process and load historical data into the database.
 - Fully containerized and deployable on Kubernetes.
 - Persistent database storage via PVC.
