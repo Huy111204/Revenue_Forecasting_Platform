@@ -1,18 +1,18 @@
 # Revenue Forecasting Platform
 
-**Containerized revenue forecasting platform** built with FastAPI, Streamlit, PostgreSQL, and Kubernetes .  
-The platform forecasts daily revenue using **ARIMA & SARIMA models**, provides a **REST API** for programmatic access, and a **Streamlit dashboard** for visualization.
+Containerized revenue forecasting platform built with FastAPI, Streamlit, PostgreSQL, and Kubernetes .  
+The platform forecasts daily revenue using ARIMA & SARIMA models, provides a REST API for programmatic access, and a Streamlit dashboard for visualization.
 
 ---
 
 ## Features
 
 - Forecast daily revenue using ARIMA & SARIMA models.
-- Interactive **Streamlit dashboard** for exploring forecasts.
-- **FastAPI REST API** with OpenAPI/Swagger documentation.
-- **ETL job** to process and load historical data into the database.
-- Fully **containerized** and deployable on **Kubernetes**.
-- Persistent database storage via **PVC**.
+- Interactive Streamlit dashboard for exploring forecasts.
+- FastAPI REST API with OpenAPI/Swagger documentation.
+- ETL job to process and load historical data into the database.
+- Fully containerized and deployable on Kubernetes.
+- Persistent database storage via PVC.
 
 ---
 <img width="1905" height="973" alt="image" src="https://github.com/user-attachments/assets/b0c245ee-33c4-4656-9f95-e0a6602d255b" />
