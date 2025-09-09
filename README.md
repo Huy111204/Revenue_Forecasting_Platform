@@ -20,6 +20,7 @@ The platform forecasts daily revenue using ARIMA & SARIMA models, provides a RES
 <img width="740" height="273" alt="image" src="https://github.com/user-attachments/assets/7a62853c-879e-4388-ae7b-cb9e24d5adeb" />
 <img width="731" height="354" alt="image" src="https://github.com/user-attachments/assets/59558817-ea39-4a17-8dd3-ff05d1a20ec0" />
 <img width="737" height="371" alt="image" src="https://github.com/user-attachments/assets/94caa49b-857e-4306-ba45-dc2ea0261f4b" />
+---
 ## To use
 ```bash
 # set up
